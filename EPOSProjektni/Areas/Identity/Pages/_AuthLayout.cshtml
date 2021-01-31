@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card login-logout-tab">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Identity/Account/Login">Prijava</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Identity/Account/Register">Registracija</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--Prikazivanje tela sa putanja prijave i registracije-->
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @RenderSection("Scripts", required: false)
+
+<!--dodavanje oznake za trenutno aktivni tab-->
+<script>
+    $(function () {
+        var tekuci = location.pathname;
+        $('.nav-tabs li a').each(function () {
+            var $this = $(this);
+            if (tekuci.indexOf($this.attr('href')) !== -1) {
+                $this.addClass('active');
+            }
+        })
+    })
+</script>
+}
