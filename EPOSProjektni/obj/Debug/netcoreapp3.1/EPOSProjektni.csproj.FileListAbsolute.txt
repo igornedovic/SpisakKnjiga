@@ -433,3 +433,5 @@ C:\Users\igorn\source\repos\EPOSProjektni\EPOSProjektni\obj\Debug\netcoreapp3.1\
 C:\Users\igorn\source\repos\EPOSProjektni\EPOSProjektni\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 C:\Users\igorn\source\repos\EPOSProjektni\EPOSProjektni\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 C:\Users\igorn\source\repos\EPOSProjektni\EPOSProjektni\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_AuthLayout.cshtml.g.cs
+C:\Users\igorn\source\repos\EPOSProjektni\EPOSProjektni\obj\Debug\netcoreapp3.1\Razor\Views\Books\Index.cshtml.g.cs
+C:\Users\igorn\source\repos\EPOSProjektni\EPOSProjektni\obj\Debug\netcoreapp3.1\Razor\Views\Books\Update.cshtml.g.cs
