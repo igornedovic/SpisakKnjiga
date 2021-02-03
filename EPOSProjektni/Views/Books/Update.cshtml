@@ -5,7 +5,7 @@
 <br />
 
 <div class="border container" style="padding:30px;">
-    <form method="post">
+    <form method="post"  enctype="multipart/form-data"> <!--posto dodajemo sliku potrebno je da imamo enkripciju-->
         @if (Model.Id != 0)
         {
             <input type="hidden" asp-for="Id" />
@@ -48,9 +48,18 @@
             </div>
         </div>
         <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="FajlSlike"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="FajlSlike" accept="image/*"/>
+                <span asp-validation-for="FajlSlike" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
             <div class="col-3 offset-3">
                 <button type="submit" class="btn btn-primary form-control">
-                    @(Model.Id != 0 ? "Azurirati" : "Dodati")
+                    @(Model.Id != 0 ? "Azuriraj" : "Dodaj")
                 </button>
             </div>
             <div class="col-3">

@@ -18,7 +18,7 @@ namespace EPOSProjektni.Areas.Identity
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<AuthDbContext>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("AuthDbContextConnection")));
+                        context.Configuration.GetConnectionString("DefaultConnection")));
 
                 services.AddDefaultIdentity<User>(options => {
                     options.SignIn.RequireConfirmedAccount = false;

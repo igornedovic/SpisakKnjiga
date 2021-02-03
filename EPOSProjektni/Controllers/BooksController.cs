@@ -1,21 +1,28 @@
 ﻿using EPOSProjektni.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace EPOSProjektni.Controllers
 {
+    [Authorize]
     public class BooksController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly IWebHostEnvironment _hostEnvironment;
+
         [BindProperty]
         public Book Book { get; set; }
-        public BooksController(ApplicationDbContext db)
+        public BooksController(ApplicationDbContext db, IWebHostEnvironment hostEnvironment)
         {
             _db = db;
+            _hostEnvironment = hostEnvironment;
         }
         public IActionResult Index()
         {
@@ -45,6 +52,19 @@ namespace EPOSProjektni.Controllers
         {
             if (ModelState.IsValid)
             {
+                // cuvanje slike u wwwroot/image
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(Book.FajlSlike.FileName);
+                string extension = Path.GetExtension(Book.FajlSlike.FileName);
+                Book.Slika = fileName = fileName + extension;
+                string path = Path.Combine(wwwRootPath + "/image/", fileName);
+                using(var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    Book.FajlSlike.CopyTo(fileStream);
+                }
+
+                // upisivanje podataka u bazu
+
                 if (Book.Id == 0)
                 {
                     //create
@@ -71,6 +91,7 @@ namespace EPOSProjektni.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var bookFromDb = await _db.Books.FirstOrDefaultAsync(u => u.Id == id);
+
             if (bookFromDb == null)
             {
                 return Json(new { success = false, message = "Greska pri brisanju" });

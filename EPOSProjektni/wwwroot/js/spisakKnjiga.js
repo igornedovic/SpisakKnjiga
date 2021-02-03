@@ -30,7 +30,7 @@ function loadDataTable() {
                             Obrisi
                         </a>
                         </div>`;
-                }, "width": "50%"
+                }, "width": "40%"
             }
         ],
         "language": {
