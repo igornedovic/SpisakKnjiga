@@ -23,13 +23,14 @@ namespace EPOSProjektni.Models
         [RegularExpression("^[0-9 ]*$")]
         public string Godina { get; set; }
         [Required]
+        [DisplayName("Broj strana")]
         public int BrojStrana { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
         public string Slika { get; set; }
 
         [NotMapped]
-        [DisplayName("Prilozi sliku")]
+        [DisplayName("Priloži sliku")]
         public IFormFile FajlSlike { get; set; }
     }
 }

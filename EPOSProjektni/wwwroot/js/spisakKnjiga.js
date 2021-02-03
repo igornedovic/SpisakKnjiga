@@ -13,10 +13,16 @@ function loadDataTable() {
             "datatype": "json"
         },
         "columns": [
-            { "data": "naziv", "width": "20%" },
-            { "data": "autor", "width": "20%" },
-            { "data": "godina", "width": "20%" },
-            { "data": "brojStrana", "width": "20%" },
+            { "data": "naziv", "width": "15%" },
+            { "data": "autor", "width": "15%" },
+            { "data": "godina", "width": "15%" },
+            { "data": "brojStrana", "width": "15%" },
+            {
+                "data": "slika",
+                "render": function (data) {
+                    return '<img src="../image/' + data + '" class="avatar" width="140" height="100"/>';
+                }, "width": "15%"
+            },
             {
                 "data": "id",
                 "render": function (data) {
