@@ -1,7 +1,8 @@
 ﻿@model EPOSProjektni.Models.Book
 
 <br />
-<h2 class="text-info">@(Model.Id!=0 ? "Azuriraj" : "Dodaj") podatke o knjizi</h2>
+<h2 class="text-info">@(Model.Id!=0 ? "Ažuriraj" : "Dodaj") podatke o knjizi</h2> <!--ako nemamo podatke o knjizi prikazace
+                                                                                      se Dodaj, a ako imamo Azuriraj-->
 <br />
 
 <div class="border container" style="padding:30px;">
@@ -59,7 +60,7 @@
         <div class="form-group row">
             <div class="col-3 offset-3">
                 <button type="submit" class="btn btn-primary form-control">
-                    @(Model.Id != 0 ? "Azuriraj" : "Dodaj")
+                    @(Model.Id != 0 ? "Ažuriraj" : "Dodaj")
                 </button>
             </div>
             <div class="col-3">

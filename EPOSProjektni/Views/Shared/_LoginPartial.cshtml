@@ -5,15 +5,17 @@
 @inject UserManager<User> UserManager
 
 <ul class="navbar-nav">
-    @if (SignInManager.IsSignedIn(User))
+    @if (SignInManager.IsSignedIn(User)) //ukoliko je korisnik prijavljen
     {
         <li class="nav-item">
+            <!--link ka spisku knjiga-->
             <a class="nav-link text-dark" style="padding-right:570px;" asp-controller="Books" asp-action="Index">Spisak knjiga</a>
         </li>
-        <li class="nav-item">
-            <a id="manage" class="nav-link text-dark">Zdravo @UserManager.GetUserName(User)!</a>
+        <li class="nav-item">                                <!--pristupamo polju email-->
+            <a id="manage" class="nav-link text-dark">Zdravo @UserManager.GetUserName(User)!</a> 
         </li>
         <li class="nav-item">
+            <!--dugme odjave i redirekcija na pocetnu stranicu za ponovnu prijavu-->
             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Odjava</button>
             </form>

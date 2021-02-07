@@ -13,7 +13,7 @@ namespace EPOSProjektni
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run(); // kreiranje i pokretanje host builder-a kao web aplikacije
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

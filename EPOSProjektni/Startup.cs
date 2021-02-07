@@ -25,6 +25,8 @@ namespace EPOSProjektni
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // servisi koje dodajemo aplikaciji kako bi mogla da se izvrsava kao web aplikacija
+            // i kako bi uspostavila konekciju sa bazom
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                 );
@@ -42,9 +44,10 @@ namespace EPOSProjektni
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            // middlewares koje koristi aplikacija
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -57,7 +60,7 @@ namespace EPOSProjektni
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}"); // obrazac za pristupanje rutama
                 endpoints.MapRazorPages();
             });
         }

@@ -23,7 +23,7 @@ namespace EPOSProjektni.Controllers
         public BooksController(ApplicationDbContext db, IWebHostEnvironment hostEnvironment)
         {
             _db = db;
-            _hostEnvironment = hostEnvironment;
+            _hostEnvironment = hostEnvironment; // interfejs za dobijanje lokacije wwwroot foldera
         }
         public IActionResult Index()
         {
@@ -35,10 +35,10 @@ namespace EPOSProjektni.Controllers
             Book = new Book();
             if (id == null)
             {
-                //create
+                //dodavanje knjige koja nije na spisku
                 return View(Book);
             }
-            //update
+            //azuriranje postojece knjige
             Book = _db.Books.FirstOrDefault(u => u.Id == id);
             if (Book == null)
             {
@@ -53,26 +53,27 @@ namespace EPOSProjektni.Controllers
         {
             if (ModelState.IsValid)
             {
-                // cuvanje slike u wwwroot/image
+                // cuvanje slike u wwwroot/image (wwwroot sadrzi staticke fajlove)
                 string wwwRootPath = _hostEnvironment.WebRootPath;
                 string fileName = Path.GetFileNameWithoutExtension(Book.FajlSlike.FileName);
                 string extension = Path.GetExtension(Book.FajlSlike.FileName);
-                Book.Slika = fileName = fileName + extension;
+                Book.Slika = fileName = fileName + extension; // u polje slika sacuvati naziv fajla slike i ekstenziju
                 string path = Path.Combine(wwwRootPath + "/image/", fileName);
                 using(var fileStream = new FileStream(path, FileMode.Create))
                 {
-                    Book.FajlSlike.CopyTo(fileStream);
+                    Book.FajlSlike.CopyTo(fileStream); 
                 }
 
                 // upisivanje podataka u bazu
 
                 if (Book.Id == 0)
                 {
-                    //create
+                    // dodavanje ako ne postoji u bazi
                     _db.Books.Add(Book);
                 }
                 else
                 {
+                    // azuriranje ukoliko vec postoji
                     _db.Books.Update(Book);
                 }
                 _db.SaveChanges();
@@ -85,21 +86,25 @@ namespace EPOSProjektni.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Json(new { data = await _db.Books.ToListAsync() });
+            return Json(new { data = await _db.Books.ToListAsync() }); // pristupom Books/getall dobijamo listu svih zapisa o knjigama
+                                                                       // iz baze u vidu JSON formata
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            var bookFromDb = await _db.Books.FirstOrDefaultAsync(u => u.Id == id);
+            // brisanje zapisa iz baze
+
+            var bookFromDb = await _db.Books.FirstOrDefaultAsync(u => u.Id == id); // pronalazi knjigu sa id-em koji se poklapa 
+                                                                                   // sa id-em trazene knjige za brisanje
 
             if (bookFromDb == null)
             {
-                return Json(new { success = false, message = "Greska pri brisanju" });
+                return Json(new { success = false, message = "Greška pri brisanju" }); // JSON sa porukom neuspeha
             }
             _db.Books.Remove(bookFromDb);
             await _db.SaveChangesAsync();
-            return Json(new { success = true, message = "Uspesno ste obrisali zapis" });
+            return Json(new { success = true, message = "Uspešno ste obrisali zapis" }); // JSON sa porukom uspeha
         }
         #endregion
     }

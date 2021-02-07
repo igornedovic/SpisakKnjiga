@@ -15,6 +15,8 @@ namespace EPOSProjektni.Areas.Identity
     {
         public void Configure(IWebHostBuilder builder)
         {
+            // kreiranje baze koja ce sadrzati kredencijale korisnika koji se koriste prilikom
+            // registracije i prijave
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<AuthDbContext>(options =>
                     options.UseSqlServer(

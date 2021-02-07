@@ -11,7 +11,7 @@ namespace EPOSProjektni.Models
 {
     public class Book
     {
-        [Key]
+        [Key] 
         public int Id { get; set; }
         [Required]
         [Column(TypeName ="nvarchar(50)")]
@@ -20,7 +20,7 @@ namespace EPOSProjektni.Models
         [Column(TypeName = "nvarchar(50)")]
         public string Autor { get; set; }
         [Required]
-        [RegularExpression("^[0-9 ]*$")]
+        [RegularExpression("^[0-9 ]*$")] // atribut koji nalaze da polje godina prihvata samo brojeve
         public string Godina { get; set; }
         [Required]
         [DisplayName("Broj strana")]
@@ -29,7 +29,7 @@ namespace EPOSProjektni.Models
         [Column(TypeName = "nvarchar(50)")]
         public string Slika { get; set; }
 
-        [NotMapped]
+        [NotMapped] // atribut koji obavestava da fajl ne treba unositi u bazu
         [DisplayName("Priloži sliku")]
         public IFormFile FajlSlike { get; set; }
     }

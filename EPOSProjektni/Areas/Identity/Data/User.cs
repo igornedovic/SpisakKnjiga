@@ -11,7 +11,7 @@ namespace EPOSProjektni.Areas.Identity.Data
     public class User : IdentityUser
     {
         [PersonalData]
-        [Column(TypeName ="nvarchar(100)")]
+        [Column(TypeName ="nvarchar(100)")] // atributi koji oznacavaju da se radi o licnim podacima i ogranicenje za unos
         public string Ime { get; set; }
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]

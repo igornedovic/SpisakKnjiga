@@ -4,12 +4,13 @@
         <h2 class="text-info">Spisak knjiga</h2>
     </div>
     <div class="col-3 offset-3">
-        <a asp-action="Update" asp-controller="Books" class="btn btn-info form-control text-white">
-            Dodaj novu knjigu
+        <a asp-action="Update" asp-controller="Books" class="btn btn-info form-control text-white"> 
+            Dodaj novu knjigu <!--klikom na dodaj novu knjigu izvrisice se redirekcija na Books/Update-->
         </a>
     </div>
     <div class="col-12 border p-3">
-        <table id="DT_load" class="table table-striped table-bordered" style="width:100%">
+        <table id="DT_load" class="table table-striped table-bordered" style="width:100%"> <!--tabela koja se popunjava
+                                                                                               AJAX pozivom-->
             <thead>
                 <tr>
                     <th>Naziv</th>
@@ -25,6 +26,6 @@
 </div>
 
 @section Scripts{
-    <script src="~/js/spisakKnjiga.js"></script>
+    <script src="~/js/spisakKnjiga.js"></script> <!--skripta sa AJAX pozivom-->
 }
 

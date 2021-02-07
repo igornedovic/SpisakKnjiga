@@ -47,9 +47,9 @@ namespace EPOSProjektni.Areas.Identity.Pages.Account
         public class InputModel
         {
             // podesavanje kredencijala
-            [Required]
+            [Required] // dato polje se mora popuniti
             [DataType(DataType.Text)]
-            [Display(Name = "Ime")]
+            [Display(Name = "Ime")] // naziv koji ce biti prikazan korisniku
             public string Ime { get; set; }
 
             [Required]
