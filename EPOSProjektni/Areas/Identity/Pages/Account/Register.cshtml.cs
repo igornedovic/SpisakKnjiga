@@ -47,27 +47,30 @@ namespace EPOSProjektni.Areas.Identity.Pages.Account
         public class InputModel
         {
             // podesavanje kredencijala
-            [Required] // dato polje se mora popuniti
+            [Required(ErrorMessage ="Polje ime je obavezno popuniti")] // dato polje se mora popuniti
+            [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Ime može sadržati samo slova")]
             [DataType(DataType.Text)]
             [Display(Name = "Ime")] // naziv koji ce biti prikazan korisniku
             public string Ime { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Polje prezime je obavezno popuniti")]
+            [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Prezime može sadržati samo slova")]
             [DataType(DataType.Text)]
             [Display(Name = "Prezime")]
             public string Prezime { get; set; }
 
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Polje email je obavezno popuniti")]
+            [EmailAddress(ErrorMessage = "Neispravan email")]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "{0} mora sadrzati najmanje {2} i najvise {1} karaktera.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Polje password je obavezno popuniti")]
+            [StringLength(100, ErrorMessage = "{0} mora sadržati najmanje {2}, najviše {1} karaktera i barem jedan specijalni karakter i broj", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
 
+            [Required(ErrorMessage = "Polje ponovi password je obavezno popuniti")]
             [DataType(DataType.Password)]
             [Display(Name = "Ponovi password")]
             [Compare("Password", ErrorMessage = "Password i potvrda password-a se ne poklapaju.")]

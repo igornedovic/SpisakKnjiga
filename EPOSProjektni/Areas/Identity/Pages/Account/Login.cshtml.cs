@@ -43,11 +43,11 @@ namespace EPOSProjektni.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Polje email je obavezno popuniti")]
+            [EmailAddress(ErrorMessage = "Neispravan email")]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Polje password je obavezno popuniti")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
