@@ -20,3 +20,6 @@
 
 ## Korak 7
 ![Korak7](https://github.com/igornedovic/SpisakKnjiga/blob/master/EPOSProjektni/wwwroot/image/steps/Korak7.PNG?raw=true)
+
+## Korak 8
+![Korak8](https://github.com/igornedovic/SpisakKnjiga/blob/master/EPOSProjektni/wwwroot/image/steps/Korak8.PNG?raw=true)
